@@ -8,7 +8,13 @@ SET(TARGET qt-json)
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 
+
 ADD_LIBRARY(${TARGET} ${LIBRARY_TYPE} json.cpp)
+
+set_target_properties(${TARGET} PROPERTIES
+                      DEFINE_SYMBOL QTJSON_MAKEDLL
+                      PUBLIC_HEADER "json.h"
+                      )
 
 qtX_use_modules(${TARGET} Core)
 

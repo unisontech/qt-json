@@ -36,6 +36,18 @@
 #include <QVariant>
 #include <QString>
 
+#include <QtCore/qglobal.h>
+
+#ifndef QTJSON_EXPORT
+# if defined(QTJSON_MAKEDLL)
+   /* We are building this library */
+#  define QTJSON_EXPORT Q_DECL_EXPORT
+# else
+   /* We are using this library */
+#  define QTJSON_EXPORT Q_DECL_IMPORT
+# endif
+#endif
+
 
 /**
  * \namespace QtJson
@@ -43,15 +55,17 @@
  *
  * Json parses a JSON data into a QVariant hierarchy.
  */
+
+
+
 namespace QtJson
 {
-
     /**
      * Parse a JSON string
      *
      * \param json The JSON data
      */
-    QVariant parse(const QString &json);
+    QTJSON_EXPORT QVariant parse(const QString &json);
     
     /**
      * Parse a JSON string
@@ -59,7 +73,7 @@ namespace QtJson
      * \param json The JSON data
      * \param success The success of the parsing
      */
-    QVariant parse(const QString &json, bool &success);
+    QTJSON_EXPORT QVariant parse(const QString &json, bool &success);
     
     /**
     * This method generates a textual JSON representation
@@ -68,7 +82,7 @@ namespace QtJson
     *
     * \return QByteArray Textual JSON representation
     */
-    QByteArray serialize(const QVariant &data);
+    QTJSON_EXPORT QByteArray serialize(const QVariant &data);
     
     /**
     * This method generates a textual JSON representation
@@ -78,7 +92,7 @@ namespace QtJson
     *
     * \return QByteArray Textual JSON representation
     */
-    QByteArray serialize(const QVariant &data, bool &success);
+    QTJSON_EXPORT QByteArray serialize(const QVariant &data, bool &success);
 
 } //end namespace
 
