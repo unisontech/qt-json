@@ -38,6 +38,9 @@
 
 #include <QtCore/qglobal.h>
 
+#ifdef QTJSON_STATIC
+#  define QTJSON_EXPORT
+#endif
 #ifndef QTJSON_EXPORT
 # if defined(QTJSON_MAKEDLL)
    /* We are building this library */
